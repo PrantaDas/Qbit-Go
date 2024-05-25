@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  torrent:
+    image: qbittorrentofficial/qbittorrent-nox:4.6.4-3
+    container_name: qbit
+    restart: unless-stopped
+    ports:
+      - 6881:6881
+      - 8080:8080
+    environment:
+      - QBT_EULA=accept
+      - QBT_WEBUI_PORT=8080
+    volumes:
+      - ./qbit_config:/config
+      - ./qbit_downloads:/downloads
+
+  app:
+    build:
+      context: .
+    depends_on:
+      - torrent
+
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker
+    restart: unless-stopped
+    ports:
+      - 8000:32400
+    environment:
+      - TZ=Asia/Dhaka
+      - PLEX_UID=1001
+      - PLEX_GID=1001
+      - ALLOWED_NETWORKS=192.168.0.0/24
+      - PLEX_CLAIM=iAY9wdegoLgeqMCqpuTz
+    network_mode: host
+    volumes:
+      - ./plex_config:/config
+      - ./plex_temp:/transcode
+      - ./qbit_downloads:/data
