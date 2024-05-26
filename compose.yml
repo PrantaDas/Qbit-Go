@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   torrent:
     image: qbittorrentofficial/qbittorrent-nox:4.6.4-3
@@ -7,17 +5,21 @@ services:
     restart: unless-stopped
     ports:
       - 6881:6881
-      - 8080:8080
+      - 8090:8090
     environment:
       - QBT_EULA=accept
-      - QBT_WEBUI_PORT=8080
+      - QBT_WEBUI_PORT=8090
     volumes:
       - ./qbit_config:/config
       - ./qbit_downloads:/downloads
 
   app:
     build:
-      context: .
+      context: ./tgbot
+    container_name: tgbot
+    restart: unless-stopped
+    environment:
+      - QBIT_TOKEN=6403566867:AAFrSLPwpXyqRu_m4197zzj8VvUDb2ASw6E
     depends_on:
       - torrent
 
@@ -27,14 +29,15 @@ services:
     restart: unless-stopped
     ports:
       - 8000:32400
+    hostname: plex
+    network_mode: host
     environment:
       - TZ=Asia/Dhaka
       - PLEX_UID=1001
       - PLEX_GID=1001
       - ALLOWED_NETWORKS=192.168.0.0/24
       - PLEX_CLAIM=iAY9wdegoLgeqMCqpuTz
-    network_mode: host
     volumes:
       - ./plex_config:/config
       - ./plex_temp:/transcode
-      - ./qbit_downloads:/data
+      - ./qbit_downloads:/dataz
