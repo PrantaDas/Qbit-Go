@@ -40,4 +40,4 @@ services:
     volumes:
       - ./plex_config:/config
       - ./plex_temp:/transcode
-      - ./qbit_downloads:/dataz
+      - ./qbit_downloads:/data
