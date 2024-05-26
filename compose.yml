@@ -33,10 +33,9 @@ services:
     network_mode: host
     environment:
       - TZ=Asia/Dhaka
-      - PLEX_UID=1001
-      - PLEX_GID=1001
+      - PLEX_UID=1000
+      - PLEX_GID=1000
       - ALLOWED_NETWORKS=192.168.0.0/24
-      - PLEX_CLAIM=iAY9wdegoLgeqMCqpuTz
     volumes:
       - ./plex_config:/config
       - ./plex_temp:/transcode
