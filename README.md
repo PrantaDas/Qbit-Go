@@ -53,4 +53,4 @@ WebUI\Password_PBKDF2="@ByteArray(ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAj
 ```
 
 ## Acknowledgements
-Special thanks to [Rakibul Yeasin](github.com/dreygur) for their guidance and contributions to this project. The implementation of the bot is also available in Rust. You can check out here [ChatQbit](https://github.com/dreygur/ChatQBit).
+Special thanks to [Rakibul Yeasin](github.com/dreygur) for his guidance and contributions to this project. The implementation of the bot is also available in Rust. You can check out here [ChatQbit](https://github.com/dreygur/ChatQBit).
